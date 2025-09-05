@@ -348,12 +348,23 @@ public class Game extends Maze {
     }
 
 /**
- * Applica il danno inflitto da un attaccante a un difensore
- * e sottrae l'energia necessaria.
- * @param attaccante Pokémon che attacca
- * @param difensore Pokémon che riceve il danno
- * @param flag indica quale attacco usare (1 = attacco1, 2 = attacco2)
- */
+     * Determina il vincitore della battaglia tra il Pokémon del giocatore e il nemico.
+     * <p>
+     * Il metodo controlla i Punti Ferita (PF) residui di entrambi i Pokémon:
+     * <ul>
+     *   <li>Se il giocatore ha ancora PF > 0 e il nemico ha PF ≤ 0,
+     *       il giocatore viene dichiarato vincitore.</li>
+     *   <li>Se il nemico ha ancora PF > 0 e il giocatore ha PF ≤ 0,
+     *       il nemico viene dichiarato vincitore.</li>
+     *   <li>In tutti gli altri casi (entrambi ancora in vita o entrambi a 0),
+     *       non viene determinato un vincitore immediato.</li>
+     * </ul>
+     *
+     * @param player Pokémon controllato dal giocatore
+     * @param enemy Pokémon avversario
+     * @return {@code true} se il giocatore è vincitore o entrambi sono ancora in vita,
+     *         {@code false} se il nemico vince
+     */
     private boolean vincitore(Pokemon player, Pokemon enemy) {
         boolean flag = true;
         if (player.getPf() > 0 && enemy.getPf() < 0) {
@@ -475,3 +486,4 @@ public class Game extends Maze {
     }
 
 }
+
